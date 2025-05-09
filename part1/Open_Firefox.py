@@ -14,5 +14,3 @@ driver.forward()
 driver.refresh()
 
 
-# Keep browser open for 10 seconds
-time.sleep(10)
