@@ -1,10 +1,7 @@
-from telnetlib import EC
+import sys
 
 from selenium import webdriver
-from selenium.common import TimeoutException
 from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 import time
 
@@ -19,5 +16,6 @@ driver.get('https://rahulshettyacademy.com/AutomationPractice')
 # Wait for the page to load
 # Wait for the presence of a specific element on the page
 driver.save_screenshot("screenshot.png")
+sys.exit()
 
-driver.quit()
+

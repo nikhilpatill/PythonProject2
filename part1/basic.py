@@ -16,10 +16,3 @@ driver.get("https://www.youtube.com/watch?v=ktDvVEEX55g&t=723s")
 driver.back()
 driver.forward()
 driver.refresh()
-
-
-# Keep browser open for 10 seconds
-time.sleep(10)
-
-# Close the browser
-driver.quit()

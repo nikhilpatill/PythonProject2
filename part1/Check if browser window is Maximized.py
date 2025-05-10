@@ -33,5 +33,4 @@ if initial_window_size == maximized_window_size:
 else:
     print('Window is not in maximized state.')
 
-# Close the driver
-driver.quit()
+
