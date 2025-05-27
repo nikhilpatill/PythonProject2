@@ -12,7 +12,7 @@ options.add_argument("start-maximized")  # Open browser in maximized mode
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
 # Navigate to the url
-driver.get('https://rahulshettyacademy.com/AutomationPractice')
+driver.get('https://rahulshettyacademycom/AutomationPractice')
 
 # Find first input text field
 my_input_text = driver.find_element(By.XPATH, '//input[@id="autocomplete"]')
