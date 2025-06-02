@@ -1,6 +1,5 @@
-
+import logging
 import time
-
 import self
 from pages.loginpage import LoginPage
 from selenium import webdriver
@@ -9,13 +8,17 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 from Utility.Baseutility import baseclass
+from Utility.CustomLogger import LogGenerator
 
-
-class Test_002_DDT_Login :
+class Test_002_DDT_Login:
     baseURL = "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login"
 
+    logger = LogGenerator.loggen()
+
     def test_login_ddt1(self):
-        self.driver= baseclass.setup(self)
+        self.logger.info("********** Verifying Login Test **********")
+        self.logger.info("********** Verifying Login Test **********")
+        self.driver = baseclass.launch_browser(self, "firefox")
         self.driver.get(self.baseURL)
         self.driver.maximize_window()
         self.lp = LoginPage(self.driver)
@@ -27,9 +30,14 @@ class Test_002_DDT_Login :
         if actual_title == "OrangeHRM":
             print("Login successful")
             assert True
+            self.driver.save_screenshot(".\\Screenshot\\" + "test_login_ddt1.png")
+            self.logger.info("********** Login Test Passed **********")
         else:
             print("Login failed")
             assert False
+            self.driver.save_screenshot(".\\Screenshot\\" + "test_login_ddt1.png")
+            self.logger.info("********** Login Test Failed **********")
+        self.driver.close()
 
     def test_login_ddt(self):
         options = Options()
@@ -45,11 +53,4 @@ class Test_002_DDT_Login :
         if actual_title == "OrangeHRM":
             print("Login successful")
             assert True
-        else :
-            print("Login failed")
-            assert False
-
-
-
-
-
+            self.driver.save_screenshot(".\\Screenshot\\" + "test_login_ddt1.png")

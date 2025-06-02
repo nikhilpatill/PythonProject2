@@ -13,30 +13,28 @@ class baseclass:
         driver.implicitly_wait(5)
         return driver
 
-    def launch_browser(self, browser_name, url):
+
+
+
+    def launch_browser(self, browser_name):
         if browser_name.lower() == "chrome":
-            self.driver = webdriver.Chrome()
-            self.driver.maximize_window()
-            self.driver.implicitly_wait(5)
-            self.driver.get(url)
-            return self.driver
+            options = Options()
+            driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+            driver.maximize_window()
+            driver.implicitly_wait(5)
+            return driver
         elif browser_name.lower() == "firefox":
             self.driver = webdriver.Firefox()
-            self.driver.get(url)
             self.driver.maximize_window()
             self.driver.implicitly_wait(5)
             return self.driver
         elif browser_name.lower() == "edge":
             self.driver = webdriver.Edge()
-            self.driver.get(url)
             self.driver.maximize_window()
             self.driver.implicitly_wait(5)
             return self.driver
         else:
             raise ValueError("Unsupported browser: {}".format(browser_name))
-
-
-
 
     def open_url(self, url):
         self.driver.get(url)
