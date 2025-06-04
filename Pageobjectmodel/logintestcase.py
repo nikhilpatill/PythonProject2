@@ -1,5 +1,6 @@
 import logging
 import time
+from stat import filemode
 import self
 from pages.loginpage import LoginPage
 from selenium import webdriver
@@ -9,9 +10,13 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 from Utility.Baseutility import baseclass
 from Utility.CustomLogger import LogGenerator
+from Utility import XLUtils
+import allure
+
 
 class Test_002_DDT_Login:
     baseURL = "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login"
+    path = ".//TestData/LoginData.xlsx"
 
     logger = LogGenerator.loggen()
 
