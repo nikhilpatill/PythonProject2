@@ -2,6 +2,7 @@ from time import sleep
 
 from selenium.webdriver.common.by import By
 from time import sleep
+from Utility.Genaricmethod import ErrorChecker
 
 
 class LoginPage:
@@ -9,7 +10,7 @@ class LoginPage:
     textbox_username_id = "//input[@name='username']"
     textbox_password_id = "//input[@name='password']"
     button_login_xpath = "//button[@type='submit']"
-
+    Gn = ErrorChecker()
 
 
     def __init__(self,driver):
@@ -23,8 +24,12 @@ class LoginPage:
 
     def setPassword(self, password):
         self.driver.find_element(By.XPATH, "//input[@name='password']").send_keys(password)
+
     def clickLogin(self):
         self.driver.find_element(By.XPATH, "//button[@type='submit']").click()
         sleep(2)
     def getLoginTitle(self):
         return self.driver.title
+
+    def get_error_message(self):
+        return ErrorChecker.check_error_message(self.driver)

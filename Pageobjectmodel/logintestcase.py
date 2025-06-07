@@ -44,6 +44,26 @@ class Test_002_DDT_Login:
             self.logger.info("********** Login Test Failed **********")
         self.driver.close()
 
+
+    def test_login_error(self):
+        self.logger.info("********** Verifying Login Test **********")
+        self.logger.info("********** Verifying Login Test **********")
+        self.driver = baseclass.launch_browser(self, "chrome")
+        self.driver.get(self.baseURL)
+        self.driver.maximize_window()
+        self.lp = LoginPage(self.driver)
+        self.driver.implicitly_wait(10)
+        self.lp.setUserName("Admin")
+        self.lp.clickLogin()
+        error_msg = self.lp.get_error_message()
+        assert error_msg == "Required"
+        assert True
+        self.logger.info("********** Login Test Passed **********")
+        print("Error:", error_msg)
+        #self.logger.info("Error:", error_msg)
+        self.driver.close()
+
+
     def test_login_ddt(self):
         options = Options()
         self.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)

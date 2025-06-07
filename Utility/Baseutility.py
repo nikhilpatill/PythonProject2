@@ -3,6 +3,7 @@ import pytest
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
 
 class baseclass:
 
@@ -66,4 +67,29 @@ class baseclass:
         self.driver.switch_to.window(main_window)
         print("Switched to main window")
 
+    def alert_handle(self):
+        alert = self.driver.switch_to.alert
+        alert.accept()
 
+    def aler_dismiss(self):
+        alert = self.driver.switch_to.alert
+        alert.dismiss()
+
+    def aler_input(self):
+        alert = self.driver.switch_to.alert
+        alert.send_keys("Hello")
+
+    def switch_to_frame_for_tab(self):
+        # Find all iframe elements on the page
+        iframes = self.driver.find_elements(By.TAG_NAME, "iframe")  # corrected "ifram" to "iframe"
+        total_frames = len(iframes)
+        print(total_frames)
+        for iframe in iframes:
+            frame_id = iframe.get_attribute("name")
+            print(frame_id)
+            self.driver.switch_to.frame(iframe)
+
+    def switch_back_mainframe_for_tab(self):
+        # Switch back to the main content from the iframe
+        self.driver.switch_to.default_content()
+        print("Switched back to main content")
