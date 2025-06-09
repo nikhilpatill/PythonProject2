@@ -1,9 +1,11 @@
-from selenium import  webdriver
+from selenium import webdriver
 import pytest
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.action_chains import ActionChains
+from  selenium.webdriver.common.keys import Keys
 
 class baseclass:
 
@@ -93,3 +95,30 @@ class baseclass:
         # Switch back to the main content from the iframe
         self.driver.switch_to.default_content()
         print("Switched back to main content")
+
+    def actionclick(self, ele):
+
+        action = ActionChains(self.driver)
+        action.click(ele).perform()
+
+    def actiondbclick(self, ele):
+
+        action = ActionChains(self.driver)
+        action.double_click(ele).perform()
+
+
+    def actionrightclick(self, ele):
+       action = ActionChains(self.driver)
+       action.context_click(ele).perform()
+
+    def actionsendkeys(self,ele, text):
+        action = ActionChains(self.driver)
+        action.send_keys_to_element(ele, text).perform()
+
+    def actionkeysenter(self):
+        action = ActionChains(self.driver)
+        action.send_keys_to_element(Keys.ENTER).perform()
+
+    def actionkeysTab(self, ele):
+        action = ActionChains(self.driver)
+        action.send_keys_to_element(ele, Keys.TAB).perform()
